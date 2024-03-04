@@ -1,46 +1,78 @@
-let assets = [];
+const mongoose = require('mongoose');
+const Joi = require('joi');
 
-exports.getAllAssets = (req, res) => {
+// Define asset schema
+const assetSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+    minlength: 3,
+    maxlength: 255
+  },
+  description: {
+    type: String,
+    maxlength: 1024
+  }
+});
+
+const Asset = mongoose.model('Asset', assetSchema);
+
+exports.getAllAssets = async (req, res) => {
+  const assets = await Asset.find();
   res.json(assets);
 };
 
-exports.createAsset = (req, res) => {
-  const { name, description } = req.body;
-  const newAsset = { id: assets.length + 1, name, description };
-  assets.push(newAsset);
-  res.status(201).json(newAsset);
+exports.createAsset = async (req, res) => {
+  // Validate input
+  const { error } = validateAsset(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
+
+  // Create asset
+  let asset = new Asset({
+    name: req.body.name,
+    description: req.body.description
+  });
+  asset = await asset.save();
+
+  res.status(201).json(asset);
 };
 
-exports.getAssetById = (req, res) => {
-  const assetId = parseInt(req.params.id);
-  const asset = assets.find(asset => asset.id === assetId);
-  if (asset) {
-    res.json(asset);
-  } else {
-    res.status(404).json({ message: 'Asset not found' });
-  }
+exports.getAssetById = async (req, res) => {
+  const asset = await Asset.findById(req.params.id);
+  if (!asset) return res.status(404).json({ message: 'Asset not found' });
+
+  res.json(asset);
 };
 
-exports.updateAsset = (req, res) => {
-  const assetId = parseInt(req.params.id);
-  const { name, description } = req.body;
-  const assetIndex = assets.findIndex(asset => asset.id === assetId);
-  if (assetIndex !== -1) {
-    assets[assetIndex] = { id: assetId, name, description };
-    res.json(assets[assetIndex]);
-  } else {
-    res.status(404).json({ message: 'Asset not found' });
-  }
+exports.updateAsset = async (req, res) => {
+  // Validate input
+  const { error } = validateAsset(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
+
+  // Update asset
+  const asset = await Asset.findByIdAndUpdate(req.params.id, {
+    name: req.body.name,
+    description: req.body.description
+  }, { new: true });
+
+  if (!asset) return res.status(404).json({ message: 'Asset not found' });
+
+  res.json(asset);
 };
 
-exports.deleteAsset = (req, res) => {
-  const assetId = parseInt(req.params.id);
-  const assetIndex = assets.findIndex(asset => asset.id === assetId);
-  if (assetIndex !== -1) {
-    assets.splice(assetIndex, 1);
-    res.sendStatus(204);
-  } else {
-    res.status(404).json({ message: 'Asset not found' });
-  }
+exports.deleteAsset = async (req, res) => {
+  const asset = await Asset.findByIdAndRemove(req.params.id);
+  if (!asset) return res.status(404).json({ message: 'Asset not found' });
+
+  res.sendStatus(204);
 };
+
+function validateAsset(asset) {
+  const schema = Joi.object({
+    name: Joi.string().min(3).max(255).required(),
+    description: Joi.string().max(1024)
+  });
+
+  return schema.validate(asset);
+}
 
