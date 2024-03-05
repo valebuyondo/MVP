@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/valebuyondo/MVP#readme",
   "dependencies": {
-    "express": "^4.18.3"
+    "express": "^4.18.3",
+    "joi": "^17.12.2",
+    "mongoose": "^8.2.1"
   }
 }
