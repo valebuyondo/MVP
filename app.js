@@ -16,8 +16,10 @@ const assetRoute = require('./routes/asset');
 app.use('/assets', assetRoute);
 
 // Define a route for the root URL ("/") to serve the index.html file
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'index.html'));
+app.get('/:page', (req, res) => {
+  const page = req.params.page;
+  const filePath = path.join(__dirname, 'views', page); // Construct the file path without '.html' extension
+  res.sendFile(filePath);
 });
 
 // Connect to MongoDB
