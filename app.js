@@ -1,11 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const path = require('path'); // Import the 'path' module
 const app = express();
 const port = 3000;
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -27,4 +29,3 @@ mongoose.connect('mongodb://localhost/asset-tracker', { useNewUrlParser: true, u
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
-
