@@ -1,25 +1,35 @@
-body {
+/* Reset Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Global Styles */
+  body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: #f8f9fa;
   }
   
   .container {
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
   }
   
-  h1 {
-    text-align: center;
+  header {
+    background-color: #343a40;
+    color: #fff;
+    padding: 20px 0;
+  }
+  
+  header h1 {
+    font-size: 32px;
   }
   
   nav ul {
     list-style: none;
     padding: 0;
-    text-align: center;
   }
   
   nav ul li {
@@ -29,35 +39,82 @@ body {
   
   nav ul li a {
     text-decoration: none;
-    color: #333;
+    color: #fff;
+    font-size: 18px;
   }
   
-  form div {
+  nav ul li a.active,
+  nav ul li a:hover {
+    color: #ffc107;
+  }
+  
+  .main {
+    padding: 50px 0;
+  }
+  
+  .hero {
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    padding: 100px 0;
+  }
+  
+  .hero h2 {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+  
+  .hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+  
+  .btn {
+    display: inline-block;
+    background-color: #ffc107;
+    color: #fff;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: background-color 0.3s;
+  }
+  
+  .btn:hover {
+    background-color: #ffca28;
+  }
+  
+  .features {
+    padding: 50px 0;
+  }
+  
+  .feature {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  
+  .feature i {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+  
+  .feature h3 {
+    font-size: 24px;
     margin-bottom: 10px;
   }
   
-  label {
-    display: block;
-    margin-bottom: 5px;
+  .feature p {
+    font-size: 18px;
   }
   
-  input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  button {
-    padding: 10px 20px;
-    background-color: #007bff;
+  footer {
+    background-color: #343a40;
     color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    padding: 20px 0;
+    text-align: center;
   }
   
-  button:hover {
-    background-color: #0056b3;
+  footer p {
+    font-size: 16px;
   }
   
