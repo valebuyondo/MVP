@@ -18,3 +18,6 @@ mongoose.connect('mongodb://localhost/asset-tracker', { useNewUrlParser: true, u
       .finally(() => mongoose.disconnect()); // Disconnect from MongoDB
   })
   .catch(err => console.error('Could not connect to MongoDB', err));
+
+
+  
