@@ -1,25 +1,47 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Asset Tracking System - Add Asset</title>
+  <title>Add Asset</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Add Asset</h1>
-    <form id="assetForm">
-      <div>
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
+  <header>
+    <h1>Asset Tracking System</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="add_asset.html" class="active">Add Asset</a></li>
+        <li><a href="view_assets.html">View Assets</a></li>
+        <li><a href="reports.html">Reports</a></li>
+        <li><a href="notifications.html">Notifications</a></li>
+        <li><a href="settings.html">Settings</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section class="form-section">
+      <div class="container">
+        <h2>Add Asset</h2>
+        <form id="addAssetForm">
+          <label for="assetName">Asset Name:</label>
+          <input type="text" id="assetName" name="assetName" required>
+          <label for="assetDescription">Description:</label>
+          <textarea id="assetDescription" name="assetDescription" rows="4"></textarea>
+          <button type="submit" class="btn">Add Asset</button>
+        </form>
       </div>
-      <div>
-        <label for="description">Description:</label>
-        <input type="text" id="description" name="description">
-      </div>
-      <button type="submit">Add Asset</button>
-    </form>
-  </div>
+    </section>
+  </main>
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Asset Tracking System. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="scripts.js"></script>
 </body>
 </html>
