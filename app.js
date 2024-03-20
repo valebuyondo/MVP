@@ -31,3 +31,5 @@ mongoose.connect('mongodb://localhost/asset-tracker', { useNewUrlParser: true, u
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
+
+
