@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,8 +27,18 @@
         <form id="addAssetForm">
           <label for="assetName">Asset Name:</label>
           <input type="text" id="assetName" name="assetName" required>
+          
+          <label for="assetType">Asset Type:</label>
+          <select id="assetType" name="assetType" required>
+            <option value="">Select Asset Type</option>
+            <option value="Computer">Computer</option>
+            <option value="Furniture">Furniture</option>
+            <option value="Equipment">Equipment</option>
+          </select>
+          
           <label for="assetDescription">Description:</label>
-          <textarea id="assetDescription" name="assetDescription" rows="4"></textarea>
+          <textarea id="assetDescription" name="assetDescription" rows="4" required></textarea>
+          
           <button type="submit" class="btn">Add Asset</button>
         </form>
       </div>
