@@ -1,10 +1,20 @@
-// models/Asset.js
-const mongoose = require('mongoose');
+// asset.js
 
-const assetSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  description: { type: String },
-  // Add other fields as needed
-});
+const connection = require('./database');
 
-module.exports = mongoose.model('Asset', assetSchema);
+function getAllAssets(callback) {
+  const query = 'SELECT * FROM asset-tracker';
+
+  connection.query(query, (error, results) => {
+    if (error) {
+      callback(error, null);
+      return;
+    }
+
+    callback(null, results);
+  });
+}
+
+module.exports = {
+  getAllAssets,
+};
