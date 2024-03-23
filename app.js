@@ -1,10 +1,10 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const path = require('path'); // Import the 'path' module
 const app = express();
 const port = 3000;
 const mysql = require('mysql');
-const connection = require('./database');
+const assetRoutes = require('./routes/assetRoutes');
+const connection = require('./Config/database');
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
@@ -14,9 +14,9 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'views')));
 
 // Routes
-const assetRoute = require('./routes/asset');
+const assetRoute = require('./routes/assetRoutes');
 app.use('/assets', assetRoute);
-
+//app.use('/assets', assetRoutes);
 // Define a route for the root URL ("/") to serve the index.html file
 app.get('/:page', (req, res) => {
   const page = req.params.page;

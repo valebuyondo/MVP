@@ -1,57 +1,60 @@
-const Asset = require('../models/Asset');
+// controllers/assetController.js
 
-exports.getAllAssets = async (req, res) => {
-  try {
-    const assets = await Asset.find();
-    res.json(assets);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
+//const db = require('../config/database');
 
-exports.createAsset = async (req, res) => {
-  const asset = new Asset({
-    name: req.body.name,
-    description: req.body.description
+// Create a new asset
+exports.createAsset = (req, res) => {
+  const { name, description } = req.body;
+  db.query('INSERT INTO assets (name, description) VALUES (?, ?)', [name, description], (err, result) => {
+    if (err) {
+      console.error('Error adding asset:', err);
+      res.status(500).json({ error: 'Error adding asset' });
+      return;
+    }
+    res.status(201).json({ message: 'Asset added successfully' });
   });
-
-  try {
-    const newAsset = await asset.save();
-    res.status(201).json(newAsset);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
 };
 
-exports.getAssetById = async (req, res) => {
-  try {
-    const asset = await Asset.findById(req.params.id);
-    if (!asset) return res.status(404).json({ message: 'Asset not found' });
-    res.json(asset);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
+// Get asset by ID
+exports.getAssetById = (req, res) => {
+  const id = req.params.id;
+  db.query('SELECT * FROM assets WHERE id = ?', [id], (err, result) => {
+    if (err) {
+      console.error('Error fetching asset:', err);
+      res.status(500).json({ error: 'Error fetching asset' });
+      return;
+    }
+    if (result.length === 0) {
+      res.status(404).json({ error: 'Asset not found' });
+      return;
+    }
+    res.status(200).json(result[0]);
+  });
 };
 
-exports.updateAsset = async (req, res) => {
-  try {
-    const updatedAsset = await Asset.findByIdAndUpdate(req.params.id, {
-      name: req.body.name,
-      description: req.body.description
-    }, { new: true });
-    if (!updatedAsset) return res.status(404).json({ message: 'Asset not found' });
-    res.json(updatedAsset);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
+// Update asset by ID
+exports.updateAsset = (req, res) => {
+  const id = req.params.id;
+  const { name, description } = req.body;
+  db.query('UPDATE assets SET name = ?, description = ? WHERE id = ?', [name, description, id], (err, result) => {
+    if (err) {
+      console.error('Error updating asset:', err);
+      res.status(500).json({ error: 'Error updating asset' });
+      return;
+    }
+    res.status(200).json({ message: 'Asset updated successfully' });
+  });
 };
 
-exports.deleteAsset = async (req, res) => {
-  try {
-    const deletedAsset = await Asset.findByIdAndDelete(req.params.id);
-    if (!deletedAsset) return res.status(404).json({ message: 'Asset not found' });
-    res.sendStatus(204);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
+// Delete asset by ID
+exports.deleteAsset = (req, res) => {
+  const id = req.params.id;
+  db.query('DELETE FROM assets WHERE id = ?', [id], (err, result) => {
+    if (err) {
+      console.error('Error deleting asset:', err);
+      res.status(500).json({ error: 'Error deleting asset' });
+      return;
+    }
+    res.status(200).json({ message: 'Asset deleted successfully' });
+  });
 };
