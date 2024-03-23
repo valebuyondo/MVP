@@ -24,20 +24,11 @@
     <section class="form-section">
       <div class="container">
         <h2>Add Asset</h2>
-        <form id="addAssetForm">
+        <form id="addAssetForm" action="/routes/assetRoute" method="POST">
           <label for="assetName">Asset Name:</label>
-          <input type="text" id="assetName" name="assetName" required>
-          
-          <label for="assetType">Asset Type:</label>
-          <select id="assetType" name="assetType" required>
-            <option value="">Select Asset Type</option>
-            <option value="Computer">Computer</option>
-            <option value="Furniture">Furniture</option>
-            <option value="Equipment">Equipment</option>
-          </select>
-          
+          <input type="text" id="assetName" name="name" required>
           <label for="assetDescription">Description:</label>
-          <textarea id="assetDescription" name="assetDescription" rows="4" required></textarea>
+          <textarea id="assetDescription" name="description" rows="4" required></textarea>
           
           <button type="submit" class="btn">Add Asset</button>
         </form>
@@ -49,10 +40,6 @@
       <p>&copy; 2024 Asset Tracking System. All rights reserved.</p>
     </div>
   </footer>
-
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="scripts.js"></script>
-  <script src="js/add_asset.js"></script>
-
+  
 </body>
 </html>

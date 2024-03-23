@@ -1,6 +1,6 @@
 // controllers/assetController.js
+const db = require('../Config/database');
 
-//const db = require('../config/database');
 
 // Create a new asset
 exports.createAsset = (req, res) => {

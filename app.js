@@ -1,10 +1,10 @@
 const express = require('express');
-const path = require('path'); // Import the 'path' module
+const path = require('path');
 const app = express();
 const port = 3000;
 const mysql = require('mysql');
-const assetRoutes = require('./routes/assetRoutes');
-const connection = require('./Config/database');
+const assetRoutes = require('./routes/assetRoutes'); // Correct file path
+
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
@@ -14,9 +14,8 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'views')));
 
 // Routes
-const assetRoute = require('./routes/assetRoutes');
-app.use('/assets', assetRoute);
-//app.use('/assets', assetRoutes);
+app.use('/routes/assetRoute', assetRoutes); // Correct route path
+
 // Define a route for the root URL ("/") to serve the index.html file
 app.get('/:page', (req, res) => {
   const page = req.params.page;
@@ -24,16 +23,7 @@ app.get('/:page', (req, res) => {
   res.sendFile(filePath);
 });
 
-// Connect to MongoDB
-const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'asset_tracker'
-});
 // Start server
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
-
-
