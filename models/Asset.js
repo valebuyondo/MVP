@@ -1,6 +1,6 @@
 // asset.js
 
-const connection = require('./database');
+const connection = require('../database');
 
 function getAllAssets(callback) {
   const query = 'SELECT * FROM asset-tracker';

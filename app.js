@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const path = require('path'); // Import the 'path' module
 const app = express();
 const port = 3000;
+const mysql = require('mysql');
+const connection = require('./database');
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
@@ -23,10 +25,12 @@ app.get('/:page', (req, res) => {
 });
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost/asset-tracker', { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Connected to MongoDB'))
-  .catch(err => console.error('Could not connect to MongoDB', err));
-
+const db = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'asset_tracker'
+});
 // Start server
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
