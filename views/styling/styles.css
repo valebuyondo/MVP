@@ -126,3 +126,43 @@ body {
   padding: 10px;
   border: 1px solid darkred;
 }
+
+/* CSS for the asset table */
+.asset-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.asset-table th,
+.asset-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.asset-table th {
+  background-color: #f2f2f2;
+}
+
+/* CSS for the buttons */
+.asset-actions button {
+  margin-right: 5px;
+  padding: 5px 10px;
+  border: none;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.asset-actions button:hover {
+  background-color: #45a049;
+}
+
+.asset-actions button.delete {
+  background-color: #f44336;
+}
+
+.asset-actions button.delete:hover {
+  background-color: #d32f2f;
+}
