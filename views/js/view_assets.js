@@ -120,12 +120,4 @@ function createAssetRow(asset) {
   return row;
 }
 
-// Function to handle updating an asset
-function handleUpdate(assetId) {
-  // Implement logic to handle updating the asset with the given ID
-}
 
-// Function to handle deleting an asset
-function handleDelete(assetId) {
-  // Implement logic to handle deleting the asset with the given ID
-}
