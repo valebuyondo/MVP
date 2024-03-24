@@ -3,21 +3,6 @@ const db = require('../Config/database');
 
 
 // Create a new asset
-// exports.createAsset = (req, res) => {
-//   const { name, description } = req.body;
-//   db.query('INSERT INTO assets (name, description) VALUES (?, ?)', [name, description], (err, result) => {
-//     if (err) {
-//       console.error('Error adding asset:', err);
-//       res.status(500).json({ error: 'Error adding asset' });
-//       return;
-//     }
-//     res.status(201).json({ message: 'Asset added successfully' });
-//   });
-// };
-
-// controllers/assetController.js
-
-// Create a new asset
 exports.createAsset = (req, res) => {
   const { name, description } = req.body;
   db.query('INSERT INTO assets (name, description) VALUES (?, ?)', [name, description], (err, result) => {
@@ -32,6 +17,16 @@ exports.createAsset = (req, res) => {
 
 
 
+exports.getAllAssets = (req, res) => {
+  db.query('SELECT * FROM assets', (err, results) => {
+    if (err) {
+      console.error('Error fetching assets:', err);
+      res.status(500).json({ error: 'Error fetching assets' });
+      return;
+    }
+    res.status(200).json(results);
+  });
+};
 // Get asset by ID
 exports.getAssetById = (req, res) => {
   const id = req.params.id;
