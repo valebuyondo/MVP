@@ -1,0 +1,66 @@
+/* CSS styles for toast notifications */
+
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+  }
+  
+  .toast {
+    position: relative;
+    display: none;
+    max-width: 300px;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    color: #fff;
+    font-size: 16px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .toast.show {
+    display: block;
+    animation: slideIn 0.5s ease-in-out, fadeOut 0.5s 2.5s ease-in-out forwards;
+  }
+  
+  .toast.success {
+    background-color: #4caf50; /* Green */
+  }
+  
+  .toast.error {
+    background-color: #f44336; /* Red */
+  }
+  
+  /* Keyframe animations */
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  .alert {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  

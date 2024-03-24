@@ -4,8 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Add Asset</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="./styling/styles.css">
+  <link rel="stylesheet" href="./styling/alerts.css">
 </head>
+<div id="toast-container"></div>
 <body>
   <header>
     <h1>Asset Tracking System</h1>
@@ -24,7 +26,7 @@
     <section class="form-section">
       <div class="container">
         <h2>Add Asset</h2>
-        <form id="addAssetForm" action="/routes/assetRoute" method="POST">
+        <form id="addAssetForm" action="#" method="POST">
           <label for="assetName">Asset Name:</label>
           <input type="text" id="assetName" name="name" required>
           <label for="assetDescription">Description:</label>
@@ -40,6 +42,7 @@
       <p>&copy; 2024 Asset Tracking System. All rights reserved.</p>
     </div>
   </footer>
-  
+  <script src="./js/add_asset.js"></script>
 </body>
+
 </html>

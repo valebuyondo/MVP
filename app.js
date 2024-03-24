@@ -10,8 +10,11 @@ const assetRoutes = require('./routes/assetRoutes'); // Correct file path
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-// Serve static files from the 'public' directory
+// Serve static files from the 'views' directory
 app.use(express.static(path.join(__dirname, 'views')));
+// Serve static files from the 'styles' directory
+app.use('/styles', express.static(path.join(__dirname, 'views', 'styles')));
+app.use('/styles', express.static(path.join(__dirname, 'views', 'js')));
 
 // Routes
 app.use('/routes/assetRoute', assetRoutes); // Correct route path

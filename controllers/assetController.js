@@ -3,17 +3,34 @@ const db = require('../Config/database');
 
 
 // Create a new asset
+// exports.createAsset = (req, res) => {
+//   const { name, description } = req.body;
+//   db.query('INSERT INTO assets (name, description) VALUES (?, ?)', [name, description], (err, result) => {
+//     if (err) {
+//       console.error('Error adding asset:', err);
+//       res.status(500).json({ error: 'Error adding asset' });
+//       return;
+//     }
+//     res.status(201).json({ message: 'Asset added successfully' });
+//   });
+// };
+
+// controllers/assetController.js
+
+// Create a new asset
 exports.createAsset = (req, res) => {
   const { name, description } = req.body;
   db.query('INSERT INTO assets (name, description) VALUES (?, ?)', [name, description], (err, result) => {
     if (err) {
       console.error('Error adding asset:', err);
-      res.status(500).json({ error: 'Error adding asset' });
+      res.status(500).json({ error: 'Error adding asset' }); // Send error response
       return;
     }
-    res.status(201).json({ message: 'Asset added successfully' });
+    res.status(201).json({ message: 'Asset added successfully' }); // Send success response
   });
 };
+
+
 
 // Get asset by ID
 exports.getAssetById = (req, res) => {
