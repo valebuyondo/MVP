@@ -1,9 +1,9 @@
 const express = require('express');
+const session = require('express-session');
 const path = require('path');
 const app = express();
 const port = 3000;
-const mysql = require('mysql');
-const assetRoutes = require('./routes/assetRoutes'); // Correct file path
+const assetRoutes = require('./routes/assetRoutes');
 
 
 // Middleware
@@ -12,9 +12,12 @@ app.use(express.json());
 
 // Serve static files from the 'views' directory
 app.use(express.static(path.join(__dirname, 'views')));
-// Serve static files from the 'styles' directory
-app.use('/styles', express.static(path.join(__dirname, 'views', 'styles')));
-app.use('/styles', express.static(path.join(__dirname, 'views', 'js')));
+
+// Define a route for the root URL ("/") to serve the login page
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'login.html'));
+});
+
 
 // Routes
 app.use('/routes/assetRoute', assetRoutes); // Correct route path
@@ -25,6 +28,9 @@ app.get('/:page', (req, res) => {
   const filePath = path.join(__dirname, 'views', page); // Construct the file path without '.html' extension
   res.sendFile(filePath);
 });
+// Serve static files from the 'styles' directory
+app.use('/styles', express.static(path.join(__dirname, 'views', 'styles')));
+app.use('/styles', express.static(path.join(__dirname, 'views', 'js')));
 
 // Start server
 app.listen(port, () => {

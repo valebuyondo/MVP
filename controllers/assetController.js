@@ -70,3 +70,5 @@ exports.deleteAsset = (req, res) => {
     res.status(200).json({ message: 'Asset deleted successfully' });
   });
 };
+
+
