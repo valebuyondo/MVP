@@ -5,7 +5,6 @@ const app = express();
 const port = 3000;
 const assetRoutes = require('./routes/assetRoutes');
 
-
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
