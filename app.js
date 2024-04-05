@@ -5,9 +5,15 @@ const app = express();
 const port = 3000;
 const assetRoutes = require('./routes/assetRoutes');
 
+
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(session({
+  secret: 'your-secret-key', // Change this to a secure random string
+  resave: false,
+  saveUninitialized: true
+}));
 
 // Serve static files from the 'views' directory
 app.use(express.static(path.join(__dirname, 'views')));
